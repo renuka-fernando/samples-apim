@@ -8,7 +8,7 @@ docker build -t <imageName> .
 
 -   Train Schedule Service
     ```sh
-    docker build -t <imageName> --build-arg SERVICE=train-operations .
+    docker build -t <imageName> --build-arg SERVICE=train-schedule-info .
     ```
 -   Train Service
     ```sh

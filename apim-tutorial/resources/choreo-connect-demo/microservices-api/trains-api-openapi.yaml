@@ -54,7 +54,7 @@ components:
           description: Engine model.
         facilities:
           type: string
-          description: facilities provided in the train.
+          description: Facilities provided in the train.
     TrainList:
       title: List of trains
       type: array

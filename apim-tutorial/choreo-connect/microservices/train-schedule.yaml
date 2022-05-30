@@ -15,7 +15,7 @@ spec:
         app: train-schedule
     spec:
       containers:
-      - image: renukafernando/train-schedule:0.1.0
+      - image: renukafernando/train-schedule:0.2.0 # Old Image (just break to MS) renukafernando/train-schedule:0.1.0
         imagePullPolicy: IfNotPresent
         name: train-schedule
 ---

@@ -17,6 +17,14 @@ spec:
 #        - "internal.gw.apim.com"
 #        - "20.207.80.70"
         - "*"
+    - port:
+        number: 80
+        name: http
+        protocol: HTTP
+      hosts:
+#        - "internal.gw.apim.com"
+#        - "20.207.80.70"
+        - "*"
 ---
 apiVersion: networking.istio.io/v1alpha3
 kind: VirtualService

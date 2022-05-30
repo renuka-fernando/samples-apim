@@ -15,7 +15,7 @@ spec:
         app: train-service
     spec:
       containers:
-      - image: renukafernando/train-service:0.1.3
+      - image: renukafernando/train-service:0.2.0 # Old Image (just break to MS) renukafernando/train-service:0.1.3
         imagePullPolicy: IfNotPresent
         name: train-service
 ---
