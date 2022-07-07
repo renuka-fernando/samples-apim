@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: train-schedule
+  name: train-schedule
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: train-schedule
+  template:
+    metadata:
+      annotations:
+        'consul.hashicorp.com/connect-inject': 'true'
+      labels:
+        app: train-schedule
+    spec:
+      containers:
+      - image: renukafernando/train-schedule-info:0.2.3
+        imagePullPolicy: IfNotPresent
+        name: train-schedule
+        env:
+          - name: TRAIN_SERVICE_API_KEY
+            value: ""
+            # valueFrom:
+            #   secretKeyRef:
+            #     name: train-service-credentials
+            #     key: apikey
+          - name: TRAIN_SERVICE_URL
+            value: "http://router:9090/t/coltrain.com/trains/1.0.0"
+          - name: GATEWAY_HOST
+            value: "internal.gw.apim.com"
+        ports:
+          - containerPort: 8080

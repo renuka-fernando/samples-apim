@@ -13,7 +13,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @CrossOrigin(origins = { "*" })
-@RequestMapping({ "/v1" })
+@RequestMapping({ "/" }) // this is done since, consul service discovery feature do not support
+// base paths in endpoints, hence enable to `curl http://127.0.0.1:8080/schedules/1` instead of
+// `curl http://127.0.0.1:8080/train-schedule-info/v1/schedules/1` to make openAPI cleaner.
 public class ScheduleRestController {
 	ScheduleManager manager = ScheduleManager.getManager();
 

@@ -11,13 +11,17 @@ spec:
       app: train-service
   template:
     metadata:
+      annotations:
+        'consul.hashicorp.com/connect-inject': 'true'
       labels:
         app: train-service
     spec:
       containers:
-      - image: renukafernando/train-service:0.2.0 # Old Image (just break to MS) renukafernando/train-service:0.1.3
+      - image: renukafernando/train-service:0.2.3 # Old Image (just break to MS) renukafernando/train-service:0.1.3
         imagePullPolicy: IfNotPresent
         name: train-service
+        ports:
+          - containerPort: 8080
 ---
 apiVersion: v1
 kind: Service

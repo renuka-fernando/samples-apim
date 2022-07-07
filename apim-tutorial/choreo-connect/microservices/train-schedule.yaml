@@ -11,13 +11,24 @@ spec:
       app: train-schedule
   template:
     metadata:
+      annotations:
+        'consul.hashicorp.com/connect-inject': 'true'
       labels:
         app: train-schedule
     spec:
       containers:
-      - image: renukafernando/train-schedule:0.2.0 # Old Image (just break to MS) renukafernando/train-schedule:0.1.0
+      - image: renukafernando/train-schedule-info:0.2.3 # Old Image (just break to MS) renukafernando/train-schedule:0.1.0
         imagePullPolicy: IfNotPresent
         name: train-schedule
+        env:
+          - name: TRAIN_SERVICE_API_KEY
+            value: "eyJ4NXQiOiJZVGRsTldRM05EWmlZekpqTnpRek4yVTFOVE5sWW1ZMU1qZzVNR00yWlRjMU5qTTJaRGd6WlE9PSIsImtpZCI6ImdhdGV3YXlfY2VydGlmaWNhdGVfYWxpYXMiLCJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJzdWIiOiJhZG1pbkBjb2x0cmFpbi5jb20iLCJhcHBsaWNhdGlvbiI6eyJvd25lciI6ImFkbWluQGNvbHRyYWluLmNvbSIsInRpZXJRdW90YVR5cGUiOm51bGwsInRpZXIiOiJVbmxpbWl0ZWQiLCJuYW1lIjoiRGVmYXVsdEFwcGxpY2F0aW9uIiwiaWQiOjIwLCJ1dWlkIjoiZTcwZWIwMmItODNmMy00OTQxLTgyYzQtMWExZWM4ZDBlYTUwIn0sImlzcyI6Imh0dHBzOlwvXC9kZXYuYXBpbS5jb206NDQzXC9vYXV0aDJcL3Rva2VuIiwidGllckluZm8iOnsiVW5saW1pdGVkIjp7InRpZXJRdW90YVR5cGUiOiJyZXF1ZXN0Q291bnQiLCJncmFwaFFMTWF4Q29tcGxleGl0eSI6MCwiZ3JhcGhRTE1heERlcHRoIjowLCJzdG9wT25RdW90YVJlYWNoIjp0cnVlLCJzcGlrZUFycmVzdExpbWl0IjowLCJzcGlrZUFycmVzdFVuaXQiOm51bGx9fSwia2V5dHlwZSI6IlBST0RVQ1RJT04iLCJwZXJtaXR0ZWRSZWZlcmVyIjoiIiwic3Vic2NyaWJlZEFQSXMiOlt7InN1YnNjcmliZXJUZW5hbnREb21haW4iOiJjb2x0cmFpbi5jb20iLCJuYW1lIjoiU2NoZWR1bGVzIiwiY29udGV4dCI6IlwvdFwvY29sdHJhaW4uY29tXC9zY2hlZHVsZXNcLzEuMC4wIiwicHVibGlzaGVyIjoiYXBpcHJvdmlkZXJAY29sdHJhaW4uY29tIiwidmVyc2lvbiI6IjEuMC4wIiwic3Vic2NyaXB0aW9uVGllciI6IlVubGltaXRlZCJ9LHsic3Vic2NyaWJlclRlbmFudERvbWFpbiI6ImNvbHRyYWluLmNvbSIsIm5hbWUiOiJUcmFpbnMiLCJjb250ZXh0IjoiXC90XC9jb2x0cmFpbi5jb21cL3RyYWluc1wvMS4wLjAiLCJwdWJsaXNoZXIiOiJhcGlwcm92aWRlckBjb2x0cmFpbi5jb20iLCJ2ZXJzaW9uIjoiMS4wLjAiLCJzdWJzY3JpcHRpb25UaWVyIjoiVW5saW1pdGVkIn1dLCJ0b2tlbl90eXBlIjoiYXBpS2V5IiwicGVybWl0dGVkSVAiOiIiLCJpYXQiOjE2NTM5MzAxNjUsImp0aSI6IjdjMzA3OWFkLTA0NWMtNDNhMC05M2Y2LTRkYjI2NTkzYzBjZiJ9.Y8nUmMDrye27AQoO5s07JGZ5I7N9nGVKvD23KxlIpcVE6RrlEczG33NXGv0PD_Nzc2UfNeqAcCI1zLC6f66sg2bhBk1chOeKOePeoQMoYLCJ5lrzv6qwpKgsE_lZl569PEF2w1wzpJwSAFXChL_H_KImwV_S5HShgiFzMf5UX7p6Xe0z8HfGAJfGZKQk-iHPQTga-YJaRVX_GDQfw0A3xk9Byc0aLb0iycFNYRDq_YQVuS8j2Vid_4w6C0PBLj57Di8mmf47X6Ycsu0Vy679arwwzAXG1rfc_vB5JMq8k9wWPBTmAFiY2Z2W2iKU08dJ0LVMSg21VY7YzvBhiuWWnQ=="
+          - name: TRAIN_SERVICE_URL
+            value: "http://router:9090/t/coltrain.com/trains/1.0.0"
+          - name: GATEWAY_HOST
+            value: "internal.gw.apim.com"
+        ports:
+          - containerPort: 8080
 ---
 apiVersion: v1
 kind: Service

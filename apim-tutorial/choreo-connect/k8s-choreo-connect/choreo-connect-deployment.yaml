@@ -27,6 +27,9 @@ spec:
       app: choreo-connect-deployment
   template:
     metadata:
+#      annotations:
+#        'consul.hashicorp.com/connect-inject': 'true'
+#        'consul.hashicorp.com/transparent-proxy-exclude-outbound-ports': '18000'
       labels:
         app: choreo-connect-deployment
     spec:

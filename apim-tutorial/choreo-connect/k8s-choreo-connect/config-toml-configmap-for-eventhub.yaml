@@ -33,6 +33,17 @@ data:
 
     [adapter.truststore]
       location = "/home/wso2/security/truststore"
+    
+    [adapter.consul]
+     enabled = true
+     url = "http://consul-server.consul:8500"
+     pollInterval = 5
+     ACLToken = ""
+     mgwServiceName = "choreo-connect"
+     serviceMeshEnabled = true
+     caCertFile = "/home/wso2/security/truststore/consul/consul-agent-ca.pem"
+     certFile = "/home/wso2/security/truststore/consul/local-dc-client-consul-0.pem"
+     keyFile = "/home/wso2/security/truststore/consul/local-dc-client-consul-0-key.pem"
 
     [router]
       listenerPort = 9090

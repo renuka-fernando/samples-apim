@@ -13,7 +13,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @CrossOrigin(origins = { "*" })
-@RequestMapping({ "/v1" })
+@RequestMapping({ "/" }) // this is done since, consul service discovery feature do not support
+// base paths in endpoints, hence enable to `curl http://127.0.0.1:8080/schedules/1` instead of
+// `curl http://127.0.0.1:8080/train-schedule-info/v1/schedules/1` to make openAPI cleaner.
 public class TrainRestController {
 	TrainManager manager = TrainManager.getManager();
 
@@ -27,22 +29,22 @@ public class TrainRestController {
 	}
 
 	@PostMapping({ "/trains" })
-	public void addSchedule(@RequestBody TrainEntry entry) {
+	public void addTrain(@RequestBody TrainEntry entry) {
 		this.manager.addTrain(entry);
 	}
 
 	@GetMapping({ "/trains/{id}" })
-	public TrainEntry getSchedule(@PathVariable String id) {
+	public TrainEntry getTrain(@PathVariable String id) {
 		return this.manager.getTrain(id);
 	}
 
 	@PutMapping({ "/trains/{id}" })
-	public void updateSchedule(@RequestBody TrainEntry entry, @PathVariable String id) {
+	public void updateTrain(@RequestBody TrainEntry entry, @PathVariable String id) {
 		this.manager.updateTrain(entry, id);
 	}
 
-	@DeleteMapping({ "/schedules/{id}" })
-	public void deleteSchedule(@PathVariable String id) {
+	@DeleteMapping({ "/trains/{id}" })
+	public void deleteTrain(@PathVariable String id) {
 		this.manager.deleteTrain(id);
 	}
 }

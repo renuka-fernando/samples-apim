@@ -16,6 +16,16 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/TrainList'
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Train'
+        required: true
+      responses:
+        '200':
+          description: ok
   /trains/{id}:
     get:
       parameters:
@@ -34,6 +44,37 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Train'
+    put:
+      parameters:
+        - name: id
+          in: path
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+            format: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Train'
+      responses:
+        '200':
+          description: ok
+    delete:
+      parameters:
+        - name: id
+          in: path
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+            format: string
+      responses:
+        '200':
+          description: ok
 components:
   schemas:
     Train:

@@ -31,6 +31,8 @@ spec:
         app: choreo-connect-adapter
       annotations:
         sidecar.istio.io/inject: "false"
+#        'consul.hashicorp.com/connect-inject': 'true'
+#        'consul.hashicorp.com/transparent-proxy-exclude-outbound-ports': '18000'
     spec:
       hostAliases:
         - ip: "40.80.91.236"
